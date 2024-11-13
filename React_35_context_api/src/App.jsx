@@ -4,12 +4,13 @@ import "./App.css"
 import FoodAdd from './component/FoodAdd'
 import Container from './component/Container'
 import ErrorMessage from './component/ErrorMessage'
+import { TodoItems } from './store/todo_items_store'
 
 const App = () => {
 
   const [todolist, setTodolist] = useState([])
 
-  function HandleAddBtn(todoname,duedate){
+  function AddNewItem(todoname,duedate){
     console.log(`Todoname: ${todoname}, Duedate:  ${duedate}`)
 
     //** functional updates: 
@@ -21,7 +22,7 @@ const App = () => {
     ])
   }
 
-  function HandleDeleteList(todolistname){
+  function DeleteItem(todolistname){
     const newItem = todolist.filter((item)=>{
       return item.todoname !== todolistname
     })
@@ -29,12 +30,20 @@ const App = () => {
     setTodolist(newItem)
   }
   return (
-    <>
-    <Header Heading={"Food List"}></Header>
-    <FoodAdd todoinfo ={HandleAddBtn}></FoodAdd>
-    <ErrorMessage foodlist={todolist}></ErrorMessage>
-    <Container todoListItem = {todolist} onDeleteClick = {HandleDeleteList}></Container>
-    </>
+    <TodoItems.Provider value={{
+      items: todolist,
+      addNewItem: AddNewItem,
+      deleteItem: DeleteItem,
+      heading: "Food List"
+      }}>
+    <center >
+    <Header></Header>
+    <FoodAdd></FoodAdd>
+    <ErrorMessage ></ErrorMessage>
+    <Container></Container>
+    </center>
+
+    </TodoItems.Provider>
   )
 }
 

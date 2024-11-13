@@ -1,7 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { TodoItems } from '../store/todo_items_store';
 
-const FoodAdd = ({todoinfo}) => {
+const FoodAdd = () => {
 
+  const {addNewItem} = useContext(TodoItems)
 
   const todonameElement = useRef();
   const duedateElement = useRef();
@@ -13,7 +15,7 @@ const FoodAdd = ({todoinfo}) => {
     const duedate = duedateElement.current.value
     todonameElement.current.value = ""
     duedateElement.current.value = ""
-    todoinfo(todoname,duedate);
+    addNewItem(todoname,duedate);
 
   };
 
