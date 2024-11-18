@@ -1,0 +1,10 @@
+.social_container{
+  display: flex;
+}
+.social_child{
+  width: 100%;
+}
+
+.sidebar{
+  min-height: 100vh;
+}
