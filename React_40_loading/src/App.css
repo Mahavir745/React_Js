@@ -1,0 +1,20 @@
+.social_container{
+  display: flex;
+}
+.social_child{
+  width: 100%;
+}
+
+.sidebar{
+  min-height: 100vh;
+}
+
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  div{
+    flex-shrink: 0;
+  }
+}
